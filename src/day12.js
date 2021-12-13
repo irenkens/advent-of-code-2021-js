@@ -77,19 +77,10 @@ const getPaths2 = (paths, map) => {
         continue;
       }
 
-      const hasVisitedSmallCaveTwice = split.some(x => isSmallCave(x) && (split.filter(p => p === x).length === 2));
-      if (!hasVisitedSmallCaveTwice) {
-        newPaths.push(`${path},${next}`);
-        continue;
-      }
-
-      const nextVisitedOnce = split.includes(next);
-      const smallCaveVisitedTwice = split.find(x => isSmallCave(x) && (split.filter(p => p === x).length === 2));
-      const canVisit = next !== smallCaveVisitedTwice && !nextVisitedOnce;
-
-      if (canVisit) {
-        newPaths.push(`${path},${next}`);
-      }
+      const smallCaves = split.filter(cave => isSmallCave(cave));
+      const visitedTwice = smallCaves.some(cave => split.filter(p => p === cave).length === 2);
+      if (visitedTwice && split.includes(next)) continue;
+      newPaths.push(`${path},${next}`);
     }
   }
 
