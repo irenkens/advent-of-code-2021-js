@@ -21,6 +21,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "dijkstrajs": "^1.0.2",
     "lodash": "^4.17.21"
   }
 }
